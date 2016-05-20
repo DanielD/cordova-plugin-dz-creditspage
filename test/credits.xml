@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<credits>
+	<done>
+		<action>
+			<![CDATA[
+			console.log('Done');
+			alert('Done');
+			]]>
+		</action>
+	</done>
+	<groups>
+		<group title="Music">
+			<articles>
+				<article>
+					<title>Paradise</title>
+					<artist>
+						<name>Misael Gauna provided by Free Background Music</name>
+						<link>https://soundcloud.com/freebmusic/misael-gauna-paradise</link>
+					</artist>
+					<links title="Free Background Music">
+						<link title="Website">http://www.freebackgroundmusic.co.uk</link>
+						<link title="Twitter">http://twitter.com/FreeBMusic</link>
+						<link title="Facebook">http://www.facebook.com/MisaelGaunaMusic</link>
+					</links>
+				</article>
+			</articles>
+		</group>
+		<group title="Sound Effects">
+			<articles>
+				<article>
+					<title>Gulps</title>
+					<artist>
+						<link>http://www.freesound.org/people/GagaMan/sounds/88510/</link>
+						<copyright>© 2010 GagaMan</copyright>
+					</artist>
+					<license>http://www.creativecommons.org/licenses/by/2.0/legalcode</license>
+				</article>
+				<article>
+					<title>Revolver Chamber Spin (Ratchet Sound)</title>
+					<artist>
+						<link>http://www.freesound.org/people/jhka/sounds/139001/</link>
+						<copyright>© 2011 jhka</copyright>
+					</artist>
+					<license>http://www.creativecommons.org/licenses/by/2.0/legalcode</license>
+				</article>
+			</articles>
+		</group>
+		<group title="Images">
+			<articles>
+				<article>
+					<title>Cars</title>
+					<artist>
+						<name>pilart/123RF</name>
+					</artist>
+				</article>
+			</articles>
+		</group>
+		<group title="Fonts">
+			<articles>
+				<article>
+					<title>SKIDZ computer fonts v1.1</title>
+					<artist>
+						<link>HLohner@aol.com</link>
+						<copyright>© 2003, 2009 Harold Lohner</copyright>
+					</artist>
+					<links>
+						<link>http://www.haroldsfonts.com</link>
+					</links>
+				</article>
+				<article>
+					<title>Digital Dream</title>
+					<artist>
+						<link>http://www.pizzadude.dk</link>
+						<copyright>© Jakob Fischer</copyright>
+					</artist>
+				</article>
+				<article>
+					<title>Droid Sans</title>
+					<artist>
+						<name>Steve Matteson</name>
+						<link>https://profiles.google.com/107777320916704234605/about</link>
+					</artist>
+					<license>http://www.apache.org/licenses/LICENSE-2.0.html</license>
+				</article>
+				<article>
+					<title>Foo</title>
+					<artist>
+						<name>Typodermic Fonts Inc.</name>
+						<link>https://www.fontspring.com/foundry/typodermic</link>
+					</artist>
+					<license>https://www.fontspring.com/lic/ro86a4ujxu</license>
+				</article>
+			</articles>
+		</group>
+	</groups>
+</credits>

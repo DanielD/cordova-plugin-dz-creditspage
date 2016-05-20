@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-dz-creditspage"
+    version="1.0.0">
+	<name>CreditsPage</name>
+	<description>Cordova Phaser.io Credits Page Plugin</description>
+	<license>Apache 2.0</license>
+	<keywords>cordova,plugin,phaser,cordova-android,cordova-ios,cordova-browser,credits</keywords>
+
+	<engines>
+		<engine name="cordova" version=">=3.0.0" />
+	</engines>
+
+	<js-module src="www/creditsPage.js" name="creditsPage">
+		<clobbers target="CreditsPage" />
+	</js-module>
+</plugin>

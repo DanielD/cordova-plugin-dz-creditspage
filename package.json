@@ -1,0 +1,27 @@
+{
+	"name": "cordova-plugin-dz-creditspage",
+	"version": "1.0.0",
+	"description": "Cordova Phaser.io Credits Page Plugin",
+	"cordova": {
+		"id": "cordova-plugin-dz-creditspage",
+		"platforms": [
+			"android",
+			"ios",
+			"browser"
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/danield/cordova-plugin-dz-creditspage"
+	},
+	"keywords": [
+		"cordova",
+		"plugin",
+		"phaser.io",
+		"cordova-android",
+		"cordova-ios",
+		"cordova-browser",
+		"credits"
+	],
+	"license": "Apache-2.0"
+}
