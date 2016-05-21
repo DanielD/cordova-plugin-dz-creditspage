@@ -149,6 +149,19 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 		if (this.options.row.text.wrap <= 0) {
 			this.options.row.text.wrap = .98 * this.options.width;
 		}
+
+		//Load the plugin
+		this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
+
+		this.game.kineticScrolling.configure({
+			kineticMovement: true,
+			timeConstantScroll: 325, //really mimic iOS
+			horizontalScroll: true,
+			verticalScroll: true,
+			horizontalWheel: true,
+			verticalWheel: true,
+			deltaWheel: 40
+		});
 	},
 
 	create: function () {
@@ -162,7 +175,9 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 		this.parser = new DOMParser("xml");
 		this.xml = this.parser.parseFromString(this.xml, "application/xml");
 
-		var headerBar = game.add.tileSprite(0, 0, this.options.header.width, this.options.header.height, this.options.img_row);
+		this.game.kineticScrolling.start();
+
+		var headerBar = this.game.add.tileSprite(0, 0, this.options.header.width, this.options.header.height, this.options.img_row);
 		var settingsText = this.createLabel(this.options.text.x, this.options.text.y, this.options.lbl_title, this.options.fontSize);
 		var _x = this.options.done.x;
 		var doneText = this.createLabel(function (o) {
@@ -179,6 +194,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 		var creditsGroup = this.game.add.group();
 		var groups = this.xml.querySelector("groups").querySelectorAll("group");
 		var spacing = 0;
+		var worldWidth = this.options.width;
 		for (var i = 0; i < groups.length; i++) {
 			var _y;
 			if (i > 0) {
@@ -197,6 +213,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 			var title = this.createTitle(this.options.row.text.x, _y, group.attributes["title"].value, this.options.largeFontSize);
 			spacing += Math.max(Math.ceil(title.width / this.options.row.text.wrap), 1);
 			title.maxWidth = this.options.row.text.wrap;
+			if (title.width > worldWidth) worldWidth = title.width;
 			creditsGroup.add(title);
 
 			var articles = group.querySelector("articles").querySelectorAll("article");
@@ -217,6 +234,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 				var articleTitle = this.createTitle(this.options.row.text.x, _y, article.querySelector("title").textContent.trim(), this.options.smallFontSize);
 				spacing += Math.max(Math.ceil(articleTitle.width / this.options.row.text.wrap), 1);
 				articleTitle.maxWidth = this.options.row.text.wrap;
+				if (articleTitle.width > worldWidth) worldWidth = articleTitle.width;
 				creditsGroup.add(articleTitle);
 
 				// artist
@@ -227,6 +245,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 					var articleName = this.createLabel(this.options.row.text.x, _y, articleNameNode.textContent.trim(), this.options.smallFontSize);
 					spacing += Math.max(Math.ceil(articleName.width / this.options.row.text.wrap), 1);
 					articleName.maxWidth = this.options.row.text.wrap;
+					if (articleName.width > worldWidth) worldWidth = articleName.width;
 					creditsGroup.add(articleName);
 				}
 				// copyright
@@ -236,6 +255,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 					var articleCopyright = this.createLabel(this.options.row.text.x, _y, articleCopyrightNode.textContent.trim(), this.options.smallFontSize);
 					spacing += Math.max(Math.ceil(articleCopyright.width / this.options.row.text.wrap), 1);
 					articleCopyright.maxWidth = this.options.row.text.wrap;
+					if (articleCopyright.width > worldWidth) worldWidth = articleCopyright.width;
 					creditsGroup.add(articleCopyright);
 				}
 				// link
@@ -246,6 +266,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 					var articleLink = this.createLink(this.options.row.text.x, _y, articleLinkText, articleLinkNode.textContent, this.options.smallFontSize);
 					spacing += Math.max(Math.ceil(articleLink.width / this.options.row.text.wrap), 1);
 					articleLink.maxWidth = this.options.row.text.wrap;
+					if (articleLink.width > worldWidth) worldWidth = articleLink.width;
 					creditsGroup.add(articleLink);
 				}
 				// links
@@ -256,6 +277,7 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 						var linksTitle = this.createTitle(this.options.row.text.x, _y, links.attributes["title"].value, this.options.smallFontSize);
 						spacing += Math.max(Math.ceil(linksTitle.width / this.options.row.text.wrap), 1);
 						linksTitle.maxWidth = this.options.row.text.wrap;
+						if (linksTitle.width > worldWidth) worldWidth = linksTitle.width;
 						creditsGroup.add(linksTitle);
 					}
 
@@ -269,16 +291,19 @@ Phaser.Utils.extend(CreditsPage.prototype, {
 						var linkHref = this.createLink(this.options.row.text.x, _y, linkTitle, link.textContent.trim(), this.options.smallFontSize);
 						spacing += Math.max(Math.ceil(linkHref.width / this.options.row.text.wrap), 1);
 						linkHref.maxWidth = this.options.row.text.wrap;
+						if (linkHref.width > worldWidth) worldWidth = linkHref.width;
 						creditsGroup.add(linkHref);
 					}
 				}
 			}
 		}
 
-		this.game.world.setBounds(0, 0, this.options.width, (.15 * this.options.height) + (10 + spacing * this.options.largeFontSize));
+		this.game.world.setBounds(0, 0, worldWidth, (.15 * this.options.height) + (10 + spacing * this.options.largeFontSize));
 	},
 
 	shutdown: function () {
+		this.game.kineticScrolling.stop();
+
 		delete this.parser;
 		delete this.xml;
 		delete this.options;
